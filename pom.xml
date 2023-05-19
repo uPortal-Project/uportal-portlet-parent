@@ -29,17 +29,17 @@ under the License.
   </parent>
 
   <groupId>org.jasig.parent</groupId>
-  <artifactId>jasig-parent</artifactId>
+  <artifactId>uportal-portlet-parent</artifactId>
   <version>42-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>Apereo Parent Project</name>
-  <description>Defaults for Apereo Maven projects.</description>
-  <url>https://github.com/Jasig/apereo-parent</url>
+  <name>uPortal Portlet Parent Project</name>
+  <description>Defaults for uPortal Portlet Maven projects.</description>
+  <url>https://github.com/uPortal-project/uportal-portlet-parent</url>
 
   <organization>
-    <name>Apereo</name>
-    <url>http://www.apereo.org</url>
+    <name>uPortal Project</name>
+    <url>http://www.uportal.org</url>
   </organization>
 
   <licenses>
@@ -51,23 +51,23 @@ under the License.
   </licenses>
 
   <scm>
-    <connection>scm:git:git@github.com:Jasig/apereo-parent.git</connection>
-    <developerConnection>scm:git:git@github.com:Jasig/apereo-parent.git</developerConnection>
-    <url>https://github.com/Jasig/apereo-parent</url>
+    <connection>scm:git:git@github.com:uPortal-project/uportal-portlet-parent.git</connection>
+    <developerConnection>scm:git:git@github.com:uPortal-project/uportal-portlet-parent.git</developerConnection>
+    <url>https://github.com/uPortal-project/uportal-portlet-parent</url>
     <tag>master</tag>
   </scm>
 
   <properties>
 
-    <jasig-scm-base>https://raw.githubusercontent.com/Jasig/apereo-parent/master/</jasig-scm-base>
+    <uPortal-project-scm-base>https://raw.githubusercontent.com/uPortal-project/uportal-portlet-parent/master/</uPortal-project-scm-base>
 
     <jasig-short-license-url>${jasig-scm-base}licenses/short-license-header.txt</jasig-short-license-url>
     <jasig-license-lookup-url>${jasig-scm-base}licenses/license-mappings.xml</jasig-license-lookup-url>
     <jasig-notice-template-url>${jasig-scm-base}licenses/NOTICE.template</jasig-notice-template-url>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.build.sourceVersion>1.7</project.build.sourceVersion>
-    <project.build.targetVersion>1.7</project.build.targetVersion>
+    <project.build.sourceVersion>1.8</project.build.sourceVersion>
+    <project.build.targetVersion>1.8</project.build.targetVersion>
     <additionalReleaseArguments />
 
     <plexus.archiver.ver>3.0.1</plexus.archiver.ver>
