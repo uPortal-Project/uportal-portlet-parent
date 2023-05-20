@@ -54,7 +54,7 @@ under the License.
     <connection>scm:git:git@github.com:uPortal-project/uportal-portlet-parent.git</connection>
     <developerConnection>scm:git:git@github.com:uPortal-project/uportal-portlet-parent.git</developerConnection>
     <url>https://github.com/uPortal-project/uportal-portlet-parent</url>
-    <tag>master</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <properties>
@@ -69,6 +69,8 @@ under the License.
     <project.build.sourceVersion>1.8</project.build.sourceVersion>
     <project.build.targetVersion>1.8</project.build.targetVersion>
     <additionalReleaseArguments />
+
+    <tomcat.version>8.5.89</tomcat.version>
 
     <plexus.archiver.ver>3.0.1</plexus.archiver.ver>
     <wagon.webdav.jackrabbit.ver>2.9</wagon.webdav.jackrabbit.ver>
@@ -97,6 +99,57 @@ under the License.
     <taglist.maven.plugin.ver>2.4</taglist.maven.plugin.ver>
 
   </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- Default Tomcat 8.5 provided dependencies -->
+      <!-- See https://tomcat.apache.org/whichversion.html -->
+      <dependency>
+        <groupId>org.apache.tomcat</groupId>
+        <artifactId>tomcat-servlet-api</artifactId>
+        <version>${tomcat.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat</groupId>
+        <artifactId>tomcat-jsp-api</artifactId>
+        <version>${tomcat.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat</groupId>
+        <artifactId>tomcat-el-api</artifactId>
+        <version>${tomcat.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat</groupId>
+        <artifactId>tomcat-websocket-api</artifactId>
+        <version>${tomcat.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat</groupId>
+        <artifactId>tomcat-jaspic-api</artifactId>
+        <version>${tomcat.version}</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <!-- uPortal common portlet dependencies places in shared/lib -->
+      <dependency>
+        <groupId>javax.portlet</groupId>
+        <artifactId>portlet-api</artifactId>
+        <version>2.0</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.portals.pluto</groupId>
+        <artifactId>pluto-taglib</artifactId>
+        <version>2.1.0-M3</version>
+        <scope>provided</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <build>
     <pluginManagement>
