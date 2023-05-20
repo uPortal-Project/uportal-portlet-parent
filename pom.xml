@@ -72,7 +72,7 @@ under the License.
 
     <tomcat.version>8.5.89</tomcat.version>
 
-    <plexus.archiver.ver>3.0.1</plexus.archiver.ver>
+    <plexus.archiver.ver>3.6.0</plexus.archiver.ver>
     <wagon.webdav.jackrabbit.ver>2.9</wagon.webdav.jackrabbit.ver>
 
     <maven.ear.plugin.ver>2.10.1</maven.ear.plugin.ver>
