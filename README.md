@@ -7,6 +7,15 @@ uPortal-project parent Maven POM for portlet projects.
 - Source encoding
 - Java version
 
+# Dependencies (provided or /shared/lib)
+- tomcat-servlet-api
+- tomcat-jsp-api
+- tomcat-el-api
+- tomcat-websocket-api
+- tomcat-jaspic-api
+- portlet-api
+- pluto-taglib
+
 # Plugins
 - maven-compiler-plugin
 - maven-jar-plugin
