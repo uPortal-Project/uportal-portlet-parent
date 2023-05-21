@@ -20,13 +20,16 @@ uPortal-project parent Maven POM for portlet projects.
 - maven-compiler-plugin
 - maven-jar-plugin
 - maven-war-plugin
-- maven-ear-plugin
+  - sometimes reconfigured for custom war names, overlays
+- maven-ear-plugin (may not be needed)
 - maven-release-plugin
 - license-maven-plugin
+  - sometimes reconfigured to avoid adding license headers to files
 - maven-jasig-legal-plugin
-- maven-notice-plugin
+- notice-maven-plugin
 
 # Reporting Plugins
+- maven-checkstyle-plugin
 - maven-jxr-plugin
 - maven-project-info-reports-plugin
 - maven-surefire-report-plugin
