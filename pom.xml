@@ -28,7 +28,7 @@ under the License.
     <version>9</version>
   </parent>
 
-  <groupId>org.jasig.parent</groupId>
+  <groupId>org.jasig.portlet</groupId>
   <artifactId>uportal-portlet-parent</artifactId>
   <version>42-SNAPSHOT</version>
   <packaging>pom</packaging>
