@@ -259,14 +259,14 @@
           </plugin>
           <plugin>
             <groupId>org.jasig.maven</groupId>
-            <!-- Copies the LICENSE and NOTICE files into generated artifact -->
+            <!-- Copies the LICENSE and NOTICE files into the generated artifact -->
             <artifactId>maven-jasig-legal-plugin</artifactId>
             <version>1.0.2</version>
           </plugin>
           <plugin>
             <groupId>org.jasig.maven</groupId>
             <artifactId>notice-maven-plugin</artifactId>
-            <!-- adds license info on deps to NOTICE file -->
+            <!-- adds license info of deps to NOTICE file -->
             <version>2.0.0</version>
             <configuration>
               <noticeTemplate>${jasig-notice-template-url}</noticeTemplate>
