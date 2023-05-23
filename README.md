@@ -33,13 +33,30 @@ uPortal-project parent Maven POM for portlet projects.
 - maven-jxr-plugin
 - maven-project-info-reports-plugin
 - maven-surefire-report-plugin
-- cobertura-maven-plugin
 - maven-pmd-plugin
 - maven-changelog-plugin
+- maven-javadoc-plugin
+- cobertura-maven-plugin
 - taglist-maven-plugin
 - findbugs-maven-plugin
-- maven-javadoc-plugin
 - jdepend-maven-plugin
+
+## Tips
+
+### Display Goals
+
+Use `mvn help:describe -Dplugin=[shortname|FQN]` to display goals with descriptions.
+For example `mvn help:describe -Dplugin=jar`
+or `mvn help:describe -Dplugin=org.apache.maven.plugins:maven-jar-plugin`.
+To display goal parameters, add `-Ddetail` to the above commands.
+
+### References
+
+- [https://maven.apache.org/plugins/index.html]
+- [https://www.mojohaus.org/plugins.html]
+- [https://mycila.carbou.me/license-maven-plugin/]
+- [https://github.com/Jasig/maven-jasig-legal-plugin]
+- [https://github.com/Jasig/maven-notice-plugin]
 
 ## Revisions
 

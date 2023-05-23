@@ -58,7 +58,6 @@
   </scm>
 
   <properties>
-
     <scm-base>https://raw.githubusercontent.com/uPortal-project/uportal-portlet-parent/master/</scm-base>
 
     <jasig-short-license-url>${scm-base}licenses/short-license-header.txt</jasig-short-license-url>
@@ -72,22 +71,24 @@
 
     <tomcat.version>8.5.89</tomcat.version>
 
-    <maven.site.plugin.ver>3.4</maven.site.plugin.ver>
 
     <!-- Reporting plug-ins.  See http://maven.apache.org/plugins/ with an R in the type column
     for report options and versions. -->
-    <wagon.webdav.jackrabbit.ver>2.9</wagon.webdav.jackrabbit.ver>
-    <cobertura.maven.plugin.ver>2.7</cobertura.maven.plugin.ver>
-    <findbugs.maven.plugin.ver>3.0.5</findbugs.maven.plugin.ver>
-    <jdepend.maven.plugin.ver>2.0</jdepend.maven.plugin.ver>
-    <maven.changelog.plugin.ver>2.3</maven.changelog.plugin.ver>
-    <maven.javadoc.plugin.ver>2.10.3</maven.javadoc.plugin.ver>
     <maven.jxr.plugin.ver>2.5</maven.jxr.plugin.ver>
-    <maven.pmd.plugin.ver>3.5</maven.pmd.plugin.ver>
     <maven.project.info.reports.plugin.ver>2.8.1</maven.project.info.reports.plugin.ver>
     <maven.surefire.report.plugin.ver>2.19</maven.surefire.report.plugin.ver>
-    <taglist.maven.plugin.ver>3.0.0</taglist.maven.plugin.ver>
+    <maven.pmd.plugin.ver>3.5</maven.pmd.plugin.ver>
+    <maven.changelog.plugin.ver>2.3</maven.changelog.plugin.ver>
+    <maven.javadoc.plugin.ver>2.10.3</maven.javadoc.plugin.ver>
 
+    <cobertura.maven.plugin.ver>2.7</cobertura.maven.plugin.ver>
+    <taglist.maven.plugin.ver>3.0.0</taglist.maven.plugin.ver>
+    <findbugs.maven.plugin.ver>3.0.5</findbugs.maven.plugin.ver>
+    <jdepend.maven.plugin.ver>2.0</jdepend.maven.plugin.ver>
+
+    <!-- site plugins -->
+    <maven.site.plugin.ver>3.4</maven.site.plugin.ver>
+    <wagon.webdav.jackrabbit.ver>2.9</wagon.webdav.jackrabbit.ver>
   </properties>
 
   <dependencyManagement>
@@ -143,7 +144,12 @@
 
   <build>
     <pluginManagement>
+      <!-- Use `mvn help:describe -Dplugin=[shortname|FQN]` to display goals with descriptions.
+        for example `mvn help:describe -Dplugin=jar`
+        or `mvn help:describe -Dplugin=org.apache.maven.plugins:maven-jar-plugin`
+      -->
       <plugins>
+        <!-- Maven Plugins: https://maven.apache.org/plugins/index.html -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
@@ -218,6 +224,7 @@
               </dependency>
             </dependencies>
           </plugin>
+          <!-- https://mycila.carbou.me/license-maven-plugin/ -->
           <plugin>
             <groupId>com.mycila</groupId>
             <artifactId>license-maven-plugin</artifactId>
@@ -257,12 +264,14 @@
               </mapping>
             </configuration>
           </plugin>
+          <!-- https://github.com/Jasig/maven-jasig-legal-plugin -->
           <plugin>
             <groupId>org.jasig.maven</groupId>
             <!-- Copies the LICENSE and NOTICE files into the generated artifact -->
             <artifactId>maven-jasig-legal-plugin</artifactId>
             <version>1.0.2</version>
           </plugin>
+          <!-- https://github.com/Jasig/maven-notice-plugin -->
           <plugin>
             <groupId>org.jasig.maven</groupId>
             <artifactId>notice-maven-plugin</artifactId>
@@ -295,6 +304,7 @@
 
     <reporting>
       <plugins>
+        <!-- Maven Plugins: https://maven.apache.org/plugins/index.html -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-checkstyle-plugin</artifactId>
@@ -319,21 +329,6 @@
           <version>${maven.surefire.report.plugin.ver}</version>
         </plugin>
         <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>cobertura-maven-plugin</artifactId>
-          <!-- use Cobertura tool to gauge test coverage of source code -->
-          <version>${cobertura.maven.plugin.ver}</version>
-          <!-- goals:
-            cobertura:cobertura
-            cobertura:check
-            cobertura:check-integtration-test
-            cobertura:clean
-            cobertura:dump-datafile
-            cobertura:instrument
-            cobertura:cobertura-integration-test
-          -->
-        </plugin>
-        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-pmd-plugin</artifactId>
           <version>${maven.pmd.plugin.ver}</version>
@@ -348,6 +343,30 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-changelog-plugin</artifactId>
           <version>${maven.changelog.plugin.ver}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>${maven.javadoc.plugin.ver}</version>
+          <configuration>
+            <source>${maven.compiler.source}</source>
+          </configuration>
+        </plugin>
+        <!-- MojoHaus plugins: https://www.mojohaus.org/plugins.html -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>cobertura-maven-plugin</artifactId>
+          <!-- use Cobertura tool to gauge test coverage of source code -->
+          <version>${cobertura.maven.plugin.ver}</version>
+          <!-- goals:
+            cobertura:cobertura
+            cobertura:check
+            cobertura:check-integtration-test
+            cobertura:clean
+            cobertura:dump-datafile
+            cobertura:instrument
+            cobertura:cobertura-integration-test
+          -->
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -369,14 +388,6 @@
             findbugs:gui
             findbugs:help
           -->
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <version>${maven.javadoc.plugin.ver}</version>
-          <configuration>
-            <source>${maven.compiler.source}</source>
-          </configuration>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
