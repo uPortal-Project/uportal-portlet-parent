@@ -1,6 +1,37 @@
 # uPortal Portlet Parent ![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.apereo.uportal.parent/uportal-portlet-parent/badge.svg?style=flat)
 uPortal-project parent Maven POM for portlet projects.
 
+## Usage
+
+Add the following into your target project's pom.xml:
+
+```xml
+<parent>
+    <groupId>org.jasig.portlet</groupId>
+    <artifactId>uportal-portlet-parent</artifactId>
+    <version>[[pom parent version]]</version>
+</parent>
+```
+
+For available releases, see: https://mvnrepository.com/artifact/org.jasig.portlet/uportal-portlet-parent
+
+## Local Testing
+
+This project follows the standard Maven install flow, which includes snapshot builds.
+It is straight forward to test local changes to the parent pom by running:
+```shell
+~$ mvn clean install
+```
+and then in your target project, select the version to be the SNAPSHOT version of the
+local build. The snapshot version number is logged near the end of the `install` command.
+
+## Release
+
+To release this parent pom into maven central, run:
+```shell
+~$ mvn clean release
+```
+
 ## Defaults
 - organization details
 - Apache 2 license
@@ -40,6 +71,8 @@ uPortal-project parent Maven POM for portlet projects.
 - taglist-maven-plugin
 - findbugs-maven-plugin
 - jdepend-maven-plugin
+- maven-enforcer-plugin
+
 
 ## Tips
 
