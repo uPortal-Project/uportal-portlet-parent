@@ -121,9 +121,18 @@
       <properties>
         <target.java.version>1.8</target.java.version>
         <tomcat.version>8.5.89</tomcat.version>
-        <spring.version>5.3.28</spring.version>
-        <portlet-api.version>2.0</portlet-api.version>
+        <spring.version>4.3.30.RELEASE</spring.version>
+        <!-- <portlet-api.version>2.0</portlet-api.version> -->
       </properties>
+      <dependencies>
+        <!-- below is what is used by uP v5.17.0. -->
+        <dependency>
+          <groupId>org.apache.portals</groupId>
+          <artifactId>portlet-api_2.1.0_spec</artifactId>
+          <version>1.0</version>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
     </profile>
 
     <profile>
@@ -144,8 +153,14 @@
         <portlet-api.version>3.0</portlet-api.version>
       </properties>
       <dependencies>
-        <!-- Liferay's port of Spring portlets (needing for Spring 5+) -->
+        <dependency>
+          <groupId>javax.portlet</groupId>
+          <artifactId>portlet-api</artifactId>
+          <version>${portlet-api.version}</version>
+          <scope>provided</scope>
+        </dependency>
 
+        <!-- Liferay's port of Spring portlets (needing for Spring 5+) -->
         <dependency>
           <groupId>com.liferay.portletmvc4spring</groupId>
           <artifactId>com.liferay.portletmvc4spring.framework</artifactId>
@@ -304,7 +319,6 @@
       </dependency>
 
       <!-- Spring Framework -->
-
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-framework-bom</artifactId>
@@ -319,12 +333,6 @@
       </dependency>
 
       <!-- uPortal common portlet dependencies places in shared/lib -->
-      <dependency>
-        <groupId>javax.portlet</groupId>
-        <artifactId>portlet-api</artifactId>
-        <version>${portlet-api.version}</version>
-        <scope>provided</scope>
-      </dependency>
       <dependency>
         <groupId>org.apache.portals.pluto</groupId>
         <artifactId>pluto-taglib</artifactId>
