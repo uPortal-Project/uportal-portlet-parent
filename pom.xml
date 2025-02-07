@@ -132,6 +132,13 @@
           <version>1.0</version>
           <scope>test</scope>
         </dependency>
+        <dependency>
+          <groupId>org.apache.portals.pluto</groupId>
+          <artifactId>pluto-taglib</artifactId>
+          <!-- does uP6 need v3.x of this? -->
+          <version>2.1.0-M3</version>
+          <scope>provided</scope>
+        </dependency>
       </dependencies>
     </profile>
 
@@ -319,6 +326,7 @@
       </dependency>
 
       <!-- Spring Framework -->
+
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-framework-bom</artifactId>
@@ -333,12 +341,7 @@
       </dependency>
 
       <!-- uPortal common portlet dependencies places in shared/lib -->
-      <dependency>
-        <groupId>org.apache.portals.pluto</groupId>
-        <artifactId>pluto-taglib</artifactId>
-        <version>2.1.0-M3</version>
-        <scope>provided</scope>
-      </dependency>
+
       <dependency>
         <groupId>org.projectlombok</groupId>
         <artifactId>lombok</artifactId>
