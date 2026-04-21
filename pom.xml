@@ -57,6 +57,21 @@
     <tag>HEAD</tag>
   </scm>
 
+  <!--
+    | Required by the Central Publisher Portal (OSSRH Staging API): deployments
+    | without a <developers> element are rejected with 'Developers information
+    | is missing'. Every portlet project inheriting from this parent picks this
+    | up automatically so no per-project fix is needed. Points at the uPortal
+    | committers page rather than any single repo's contributors list since
+    | this parent serves the whole ecosystem.
+  +-->
+  <developers>
+    <developer>
+      <organization>uPortal Developers</organization>
+      <organizationUrl>https://github.com/uPortal-Project/uPortal/blob/master/docs/COMMITTERS.md</organizationUrl>
+    </developer>
+  </developers>
+
   <properties>
     <scm-base>https://raw.githubusercontent.com/uPortal-project/uportal-portlet-parent/master/</scm-base>
 
