@@ -22,11 +22,15 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>org.sonatype.oss</groupId>
-    <artifactId>oss-parent</artifactId>
-    <version>9</version>
-  </parent>
+  <!--
+    | Previously inherited from org.sonatype.oss:oss-parent:9, which is
+    | unmaintained and was the source of the dead oss.sonatype.org
+    | distributionManagement URLs. The two things that parent provided
+    | and we still need — the distribution URLs and the source/javadoc/gpg
+    | release bindings — are now declared explicitly in this POM (see
+    | <distributionManagement> above and the <central-portal-release>
+    | profile below).
+  +-->
 
   <groupId>org.jasig.portlet</groupId>
   <artifactId>uportal-portlet-parent</artifactId>
@@ -72,6 +76,30 @@
     </developer>
   </developers>
 
+  <!--
+    | Central Publisher Portal (OSSRH Staging API compatibility service).
+    | Shadows the stale oss.sonatype.org URLs inherited from
+    | org.sonatype.oss:oss-parent:9. Every descendant portlet picks up
+    | the correct URLs automatically — no per-project override needed.
+    |
+    | The OSSRH host oss.sonatype.org was sunset in June 2025. Server id
+    | 'sonatype-nexus-staging' is preserved so existing ~/.m2/settings.xml
+    | credential entries keep working; the URL is what changed. Descendants
+    | may also use the 'central' server id (Central Portal's canonical name).
+  +-->
+  <distributionManagement>
+    <repository>
+      <id>sonatype-nexus-staging</id>
+      <name>Central Portal Release Repository</name>
+      <url>https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/</url>
+    </repository>
+    <snapshotRepository>
+      <id>sonatype-nexus-snapshots</id>
+      <name>Central Portal Snapshot Repository</name>
+      <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
   <properties>
     <scm-base>https://raw.githubusercontent.com/uPortal-project/uportal-portlet-parent/master/</scm-base>
 
@@ -80,8 +108,8 @@
     <jasig-notice-template-url>${scm-base}licenses/NOTICE.template</jasig-notice-template-url>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
     <additionalReleaseArguments />
 
     <maven.site.plugin.ver>3.12.0</maven.site.plugin.ver>
@@ -290,8 +318,8 @@
             - maven.compiler.target
           -->
           <configuration>
-            <source>1.8</source>
-            <target>1.8</target>
+            <source>${maven.compiler.source}</source>
+            <target>${maven.compiler.target}</target>
           </configuration>
         </plugin>
         <plugin>
@@ -353,7 +381,7 @@
           <configuration>
             <mavenExecutorId>forked-path</mavenExecutorId>
             <useReleaseProfile>false</useReleaseProfile>
-            <arguments>${additionalReleaseArguments} -Psonatype-oss-release,jasig-release</arguments>
+            <arguments>${additionalReleaseArguments} -Pcentral-portal-release,jasig-release</arguments>
           </configuration>
           <dependencies>
             <dependency>
@@ -666,6 +694,59 @@
   </reporting>
 
   <profiles>
+    <!--
+      | Replicates the attach-sources / attach-javadocs / sign-artifacts
+      | bindings that previously came from the 'sonatype-oss-release' profile
+      | in org.sonatype.oss:oss-parent:9. Invoked by the maven-release-plugin
+      | configuration above (-Pcentral-portal-release). Renamed from the
+      | old profile id so it's clear which flow is in play.
+    +-->
+    <profile>
+      <id>central-portal-release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>3.3.1</version>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>3.2.8</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
     <profile>
       <id>jasig-release</id>
       <!-- used by release plugin -->
