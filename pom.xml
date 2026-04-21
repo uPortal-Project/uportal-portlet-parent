@@ -72,6 +72,30 @@
     </developer>
   </developers>
 
+  <!--
+    | Central Publisher Portal (OSSRH Staging API compatibility service).
+    | Shadows the stale oss.sonatype.org URLs inherited from
+    | org.sonatype.oss:oss-parent:9. Every descendant portlet picks up
+    | the correct URLs automatically — no per-project override needed.
+    |
+    | The OSSRH host oss.sonatype.org was sunset in June 2025. Server id
+    | 'sonatype-nexus-staging' is preserved so existing ~/.m2/settings.xml
+    | credential entries keep working; the URL is what changed. Descendants
+    | may also use the 'central' server id (Central Portal's canonical name).
+  +-->
+  <distributionManagement>
+    <repository>
+      <id>sonatype-nexus-staging</id>
+      <name>Central Portal Release Repository</name>
+      <url>https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/</url>
+    </repository>
+    <snapshotRepository>
+      <id>sonatype-nexus-snapshots</id>
+      <name>Central Portal Snapshot Repository</name>
+      <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
   <properties>
     <scm-base>https://raw.githubusercontent.com/uPortal-project/uportal-portlet-parent/master/</scm-base>
 
