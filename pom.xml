@@ -158,6 +158,7 @@
     +-->
     <tomcat.version>8.5.89</tomcat.version>
     <spring.version>5.3.28</spring.version>
+    <spring-data.version>2.7.18</spring-data.version>
     <portletmvc4spring.version>5.2.0</portletmvc4spring.version>
     <portlet-api.version>2.0</portlet-api.version>
     <logback.version>1.3.5</logback.version>
