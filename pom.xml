@@ -34,7 +34,7 @@
 
   <groupId>org.jasig.portlet</groupId>
   <artifactId>uportal-portlet-parent</artifactId>
-  <version>45</version>
+  <version>46-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>uPortal Portlet Parent Project</name>
@@ -58,7 +58,7 @@
     <connection>scm:git:git@github.com:uPortal-project/uportal-portlet-parent.git</connection>
     <developerConnection>scm:git:git@github.com:uPortal-project/uportal-portlet-parent.git</developerConnection>
     <url>https://github.com/uPortal-project/uportal-portlet-parent</url>
-    <tag>uportal-portlet-parent-45</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <!--
