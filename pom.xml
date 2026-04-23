@@ -137,7 +137,25 @@
     <findbugs.maven.plugin.ver>3.0.5</findbugs.maven.plugin.ver>
     <jdepend.maven.plugin.ver>2.0</jdepend.maven.plugin.ver>
 
-    <!-- Common dependency versions -->
+    <!--
+      | Common dependency versions.
+      |
+      | tomcat.version, portlet-api.version, servlet.version, jstl.version
+      | and the other container-provided spec versions below MUST track the
+      | Tomcat shipped by uPortal-start. These dependencies are not bundled
+      | into portlet WARs; the container's shared/lib provides them at
+      | runtime, so the compile-time version has to match what will actually
+      | be on the classpath in production.
+      |
+      | When the Tomcat version changes in uPortal-start, update tomcat.version
+      | here (and any companion spec versions affected by the Tomcat bump)
+      | and release a new uportal-portlet-parent. Every descendant picks up
+      | the synchronized set via inheritance — no per-portlet change needed.
+      |
+      | Corollary: descendants SHOULD NOT redeclare these dependencies with
+      | their own <version>. A per-portlet pin desyncs from what the
+      | container provides and risks compile-against-X / runtime-Y bugs.
+    +-->
     <tomcat.version>8.5.89</tomcat.version>
     <spring.version>5.3.28</spring.version>
     <portletmvc4spring.version>5.2.0</portletmvc4spring.version>
@@ -153,8 +171,22 @@
 
   <dependencyManagement>
     <dependencies>
-      <!-- Default Tomcat 8.5 provided dependencies -->
-      <!-- See https://tomcat.apache.org/whichversion.html -->
+      <!--
+        | Tomcat-provided runtime dependencies.
+        |
+        | These artifacts ship with the Tomcat container (shared/lib) in
+        | uPortal-start, so they are NOT bundled into the portlet WAR at
+        | build time — scope is 'provided'. The compile-time version MUST
+        | match the runtime Tomcat version or you get compile-against-X /
+        | runtime-Y bugs.
+        |
+        | Descendants must not redeclare these with their own <version>.
+        | When uPortal-start's Tomcat version bumps, update tomcat.version
+        | above and cut a new parent release; descendants inherit the fix.
+        |
+        | See https://tomcat.apache.org/whichversion.html for the spec
+        | version each Tomcat minor line implements.
+      +-->
       <dependency>
         <groupId>org.apache.tomcat</groupId>
         <artifactId>tomcat-servlet-api</artifactId>
@@ -233,7 +265,15 @@
         </exclusions>
       </dependency>
 
-      <!-- uPortal common portlet dependencies places in shared/lib -->
+      <!--
+        | Portlet API and Pluto taglib — also provided at runtime, placed
+        | by uPortal-start into the Tomcat shared/lib. Same invariant as
+        | the Tomcat-provided block above: descendants inherit these
+        | versions, do not redeclare with their own <version>.
+        |
+        | If uPortal-start changes the JSR-286 Portlet API level (2.0 vs
+        | 3.0+) or the Pluto version, bump here and release a new parent.
+      +-->
       <dependency>
         <groupId>javax.portlet</groupId>
         <artifactId>portlet-api</artifactId>
