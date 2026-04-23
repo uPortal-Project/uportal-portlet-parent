@@ -534,17 +534,28 @@
                   </requireJavaVersion>
                   <bannedDependencies>
                     <excludes>
-                      <exclude>commons-collections:commons-collections:[3.2.1,4.0]</exclude>
+                      <!-- CVE-driven: commons-collections 3.2.x contains
+                           CVE-2015-6420 (RCE via deserialization). -->
                       <exclude>commons-collections:commons-collections:[3.2.1,4.0]</exclude>
                       <!-- Transitively brought in by portlet-mvc-util, should not be included -->
                       <exclude>javax.servlet:servlet-api</exclude>
-                      <!-- Logging bridges are brought in through spring-jcl (5+) -->
-                      <exclude>org.slf4j:log4j-over-slf4j</exclude>
-                      <exclude>org.slf4j:jcl-over-slf4j</exclude>
-                      <!-- Only using slf4j and logback for logging -->
+                      <!-- Only using slf4j and logback for logging; log4j
+                           1.x is EOL, log4j 2.x has historical CVEs and is
+                           not the project's chosen binding. -->
                       <exclude>commons-logging:commons-logging</exclude>
                       <exclude>org.apache.logging.log4j</exclude>
                       <exclude>log4j</exclude>
+                      <!--
+                        | Intentionally NOT banned here (as of v46):
+                        |   org.slf4j:log4j-over-slf4j
+                        |   org.slf4j:jcl-over-slf4j
+                        | These are legitimate slf4j bridges that portlets
+                        | on Spring 4.x still need (Spring 5+ ships spring-jcl
+                        | which obsoletes jcl-over-slf4j, but several
+                        | descendants are still on Spring 4.x during the
+                        | modernization cycle). Re-introduce the bans once
+                        | all descendants have moved to Spring 5+.
+                      +-->
                     </excludes>
                   </bannedDependencies>
                 </rules>
