@@ -553,6 +553,22 @@
               <exclude>src/main/webapp/js/**</exclude> -->
               <!-- Generated from commands such as `mvn site` -->
               <exclude>catalina.base_IS_UNDEFINED/**</exclude>
+              <!--
+                | Promoted from per-portlet license-plugin configs (v48 audit
+                | found these in 4-11 portlets each, none with conflicts):
+                |   target/**         build output (6 portlets)
+                |   release.properties maven-release-plugin checkpoint (4)
+                |   .gitignore        git config (6)
+                |   .idea/**          IntelliJ workspace (10/11)
+                |   overlays/**       portlet WAR overlay scratch (10/11)
+                |   **/src/main/webapp/rs/** resource-server-aggregated assets (5)
+              +-->
+              <exclude>target/**</exclude>
+              <exclude>release.properties</exclude>
+              <exclude>.gitignore</exclude>
+              <exclude>.idea/**</exclude>
+              <exclude>overlays/**</exclude>
+              <exclude>**/src/main/webapp/rs/**</exclude>
             </excludes>
             <mapping>
               <channel>XML_STYLE</channel>
