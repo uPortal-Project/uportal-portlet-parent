@@ -115,7 +115,15 @@
     <maven.site.plugin.ver>3.12.0</maven.site.plugin.ver>
     <maven.compiler.plugin.ver>3.13.0</maven.compiler.plugin.ver>
     <maven.jar.plugin.ver>3.3.0</maven.jar.plugin.ver>
-    <maven.war.plugin.ver>3.4.0</maven.war.plugin.ver>
+    <!--
+      | 3.5.1 bundles plexus-archiver 4.10.4, which patches
+      | CVE-2023-37460 (Arbitrary File Creation in AbstractUnArchiver,
+      | CVSS 8.1, fixed in plexus-archiver 4.8.0). 3.4.0 bundled
+      | plexus-archiver 4.7.1 (vulnerable). Real-world risk for portlet
+      | builds is low (we create WARs, the CVE is in the unarchive path)
+      | but the parent should not ship a vulnerable transitive by default.
+    +-->
+    <maven.war.plugin.ver>3.5.1</maven.war.plugin.ver>
     <maven.release.plugin.ver>3.1.1</maven.release.plugin.ver>
     <maven.scm.provider.gitexe.ver>2.0.1</maven.scm.provider.gitexe.ver>
     <!-- Version 4.2 identifies numerous license failures while 2.11 considers the license headers valid -->
